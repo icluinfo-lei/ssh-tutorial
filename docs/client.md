@@ -2,7 +2,7 @@
 
 ## 简介
 
-OpenSSH 的客户端是二进制程序 ssh。它在 Linux / Unix 系统的位置是`/usr/local/bin/ssh`，Windows 系统的位置是`\Program Files\OpenSSH\bin\ssh.exe`。
+OpenSSH 的客户端是二进制程序 ssh。它在 Linux/Unix 系统的位置是`/usr/local/bin/ssh`，Windows 系统的位置是`\Program Files\OpenSSH\bin\ssh.exe`。
 
 Linux 系统一般都自带 ssh，如果没有就需要安装。
 
@@ -14,10 +14,10 @@ $ sudo apt install openssh-client
 $ sudo dnf install openssh-clients
 ```
 
-安装以后，可以使用`-h`参数，查看一下是否安装成功。
+安装以后，可以使用`-V`参数输出版本号，查看一下是否安装成功。
 
 ```bash
-$ ssh -h
+$ ssh -V
 ```
 
 ## 基本用法
@@ -85,7 +85,7 @@ ssh 会将本机连接过的所有服务器公钥的指纹，都储存在本机�
 Warning: Permanently added 'foo.com (192.168.121.111)' (RSA) to the list of known hosts
 ```
 
-然后，客户端就会跟服务器建立连接。接着，ssh 就会要求用户输入所要登录账户的密码。用户输入并验证密码正确以后，就能登陆远程服务器的 Shell 了。
+然后，客户端就会跟服务器建立连接。接着，ssh 就会要求用户输入所要登录账户的密码。用户输入并验证密码正确以后，就能登录远程服务器的 Shell 了。
 
 ## 服务器密钥变更
 
@@ -251,7 +251,7 @@ $ ssh -C server.example.com
 
 **-d**
 
-`-d`参数设置打印的 debug 信息级别，数值最高，输出的内容越详细。
+`-d`参数设置打印的 debug 信息级别，数值越高，输出的内容越详细。
 
 ```bash
 $ ssh –d 1 foo.com
@@ -281,17 +281,9 @@ $ ssh -F /usr/local/ssh/other_config
 
 上面命令指定使用配置文件`other_config`。
 
-**-h，--help**
-
-`-h`、`--help`参数显示帮助信息。
-
-```bash
-$ ssh --help
-```
-
 **-i**
 
-`-i`参数用于指定私钥，意为“identity_file”，默认值为`~/.ssh/id_dsa`。注意，服务器必须存有对应的公钥，详见《密钥登录》一章。
+`-i`参数用于指定私钥，意为“identity_file”，默认值为`~/.ssh/id_dsa`。注意，对应的公钥必须存放到服务器，详见《密钥登录》一章。
 
 ```bash
 $ ssh -i my-key server.example.com
@@ -413,14 +405,14 @@ $ ssh -v -v -v server.example.com
 
 **-V**
 
-`-V`参数输出远程服务器的版本。
+`-V`参数输出 ssh 客户端的版本。
 
 ```bash
-$ ssh foo.com –V
+$ ssh –V
 ssh: SSH Secure Shell 3.2.3 (non-commercial version) on i686-pc-linux-gnu
 ```
 
-上面命令输出`foo.com`的 SSH 服务器版本是`SSH Secure Shell 3.2.3`。
+上面命令输出本机 ssh 客户端版本是`SSH Secure Shell 3.2.3`。
 
 **-X**
 
